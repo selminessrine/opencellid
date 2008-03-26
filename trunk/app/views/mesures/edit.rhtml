@@ -1,0 +1,9 @@
+<h1>Editing mesure</h1>
+
+<% form_tag :action => 'update', :id => @mesure do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @mesure %> |
+<%= link_to 'Back', :action => 'list' %>

@@ -1,0 +1,27 @@
+<h1>Listing mesures</h1>
+
+<table>
+  <tr>
+  <% for column in Mesure.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for mesure in @mesures %>
+  <tr>
+  <% for column in Mesure.content_columns %>
+    <td><%=h mesure.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => mesure %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => mesure %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => mesure }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @mesure_pages.current.previous } if @mesure_pages.current.previous %>
+<%= link_to 'Next page', { :page => @mesure_pages.current.next } if @mesure_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New mesure', :action => 'new' %>
