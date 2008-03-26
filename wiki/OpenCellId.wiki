@@ -1,0 +1,14 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+
+OpenCellID
+
+
+
+= Details =
+
+What is OpenCellID?
+
+It's a service and a set of related tool to create an OpenSource database of CellID all around the world....
