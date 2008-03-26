@@ -1,0 +1,8 @@
+<% for column in Mesure.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @mesure.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @mesure %> |
+<%= link_to 'Back', :action => 'list' %>
