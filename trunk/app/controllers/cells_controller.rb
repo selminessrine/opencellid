@@ -48,4 +48,7 @@ class CellsController < ApplicationController
     Cell.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+  
+
+  
 end
