@@ -19,6 +19,7 @@
 				<ul>
                     <li><%= link_to "About", {:controller=>"users", :action=>"staticShow",:id=>"about" } %></li> 
                     <li><%= link_to "Api", {:controller=>"users", :action=>"staticShow",:id=>"api" } %></li> 
+                    <li><%= link_to "Browse cells", {:controller=>"cells", :action=>"list" } %></li> 
 				</ul>
 			</div>
 		</div>
@@ -32,10 +33,7 @@
 				<div id="page">
 			<div id="content">
 				<div class="post">
-					<h2 class="title"><a href="#">Welcome to OpenCellID</a></h2>
-					<div class="entry">
 <%= @content_for_layout %>
-                    </div>
 				</div>
 			</div>
 			<!-- end #content -->
