@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>OpenCellID</title>
+<meta name="keywords" content="opencellid,cell,cellid,phone" />
+<meta name="description" content="OpenSource database of cell id" />
+<%= stylesheet_link_tag 'style', :media => 'all' %>
+</head>
+<body>
+<div id="wrapper">
+	<div id="wrapper2">
+		<div id="header">
+
+			<div id="logo">
+				<h1>OpenCellId</h1>
+			</div>
+			<div id="menu">
+				<ul>
+                    <li><%= link_to "About", {:controller=>"users", :action=>"staticShow",:id=>"about" } %></li> 
+                    <li><%= link_to "Api", {:controller=>"users", :action=>"staticShow",:id=>"api" } %></li> 
+				</ul>
+			</div>
+		</div>
+		<!-- end #header -->
+
+
+		<% if flash[:notice] %>
+				<div id="notice"><%= flash[:notice] %><br/></div>
+		<%end%>
+		
+				<div id="page">
+			<div id="content">
+				<div class="post">
+					<h2 class="title"><a href="#">Welcome to OpenCellID</a></h2>
+					<div class="entry">
+<%= @content_for_layout %>
+                    </div>
+				</div>
+			</div>
+			<!-- end #content -->
+		<div id="sidebar">
+
+			</div>
+			<!-- end #sidebar -->
+			<div style="clear: both; visible:none">&nbsp;</div>
+			<div id="widebar">
+
+
+			</div>
+			<!-- end #widebar -->
+		</div>
+		<!-- end #page -->
+	</div>
+	<!-- end #wrapper2 -->
+
+	<div id="footer">
+		<p>(c) 2008 8Motions</p>
+	</div>
+</div>
+<!-- end #wrapper -->
+</body>
+</html>

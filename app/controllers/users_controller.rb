@@ -17,5 +17,7 @@ class UsersController < ApplicationController
   rescue ActiveRecord::RecordInvalid
     render :action => 'new'
   end
-
+def staticShow
+		render(:action=>params[:id])
+end
 end
