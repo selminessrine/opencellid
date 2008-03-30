@@ -25,6 +25,7 @@ task :after_symlink, :roles => [:web, :app] do
 
     # Renomer le fichier database.yml.prd 
     #run "cp #{current_path}/config/database.yml.prd #{current_path}/config/database.yml"
+    cp #{current_path}/../shared/database.yml #{current_path}/config/database.yml"
 	
     # Conserver le même répertoire tmp qu'avant le déploiement, création de liens sympliques
     run "rm -drf #{current_path}/tmp"
