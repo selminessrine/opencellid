@@ -39,12 +39,20 @@ class MesuresController < ApplicationController
     mnc=params[:mnc]
     lac=params[:lac]
     cellid=params[:cellid]
-    puts "params:"+mcc+" mnc:"+mnc+" lac:"+lac+" cellid:"+cellid
+    username=params[:user]
+   
+    user=User.find_by_login(username)
+    userId=1
+    if user
+      userid=user.id
+    end
+    extraInfo=params[:extraInfo]
+#    puts "params:"+mcc+" mnc:"+mnc+" lac:"+lac+" cellid:"+cellid
     @cell=Cell.find_by_mcc_and_mnc_and_lac_and_cellid(mcc,mnc,lac,cellid)
     if !@cell
       @cell=Cell.new(:mcc=>mcc,:mnc=>mnc,:lac=>lac,:cellid=>cellid)
     end
-    @mesure=Mesure.new(:lat=>params[:lat],:lon=>params[:lon])
+    @mesure=Mesure.new(:lat=>params[:lat],:lon=>params[:lon],:userid=>userid,:extraInfo=>extraInfo)
     @mesure.cell=@cell
     @mesure.save
     @cell.nbSamples=@cell.nbSamples+1
