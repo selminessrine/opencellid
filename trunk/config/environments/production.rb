@@ -16,3 +16,4 @@ config.action_controller.perform_caching             = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+MAP_API_KEY="ABQIAAAAdq0rZQlDP0XqsRuObxTBphSEQbfjLSsureY1AXC1vQGi0M8INBQtLLdmbaYV_N3HzPpelo7VFc-ixA"
