@@ -19,3 +19,4 @@ config.action_view.debug_rjs                         = true
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+MAP_API_KEY="ABQIAAAAdq0rZQlDP0XqsRuObxTBphTX2XchcwgyHzp4Xo0DHRAzt2aLjhRJXp_i3devN3p8c8WRasfE1bbo9Q"

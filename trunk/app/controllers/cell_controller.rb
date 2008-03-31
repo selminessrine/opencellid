@@ -10,4 +10,8 @@ class CellController < ApplicationController
 	render :layout=>false
    end
    
+   def map
+    @cells=Cell.find(:all)
+   end
+   
 end

@@ -6,6 +6,8 @@
 <meta name="keywords" content="opencellid,cell,cellid,phone" />
 <meta name="description" content="OpenSource database of cell id" />
 <%= stylesheet_link_tag 'style', :media => 'all' %>
+<script src="http://maps.google.com/maps?file=api&v=2&key=<%= MAP_API_KEY -%> type="text/javascript"></script>
+<%= javascript_include_tag 'mapstraction' %>
 </head>
 <body>
 <div id="wrapper">
@@ -20,6 +22,7 @@
                     <li><%= link_to "About", {:controller=>"users", :action=>"staticShow",:id=>"about" } %></li> 
                     <li><%= link_to "Api", {:controller=>"users", :action=>"staticShow",:id=>"api" } %></li> 
                     <li><%= link_to "Browse cells", {:controller=>"cells", :action=>"list" } %></li> 
+                    <li><%= link_to "Map", {:controller=>"cell", :action=>"map" } %></li> 
 				</ul>
 			</div>
 		</div>
@@ -56,6 +59,18 @@
 		<p>(c) 2008 8Motions</p>
 	</div>
 </div>
+<% if ENV["RAILS_ENV"]=='production' %>	
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+sc_project=3572878; 
+sc_invisible=1; 
+sc_partition=41; 
+sc_security="d52ee7be"; 
+</script>
+
+<script type="text/javascript" src="http://www.statcounter.com/counter/counter_xhtml.js"></script><noscript><div class="statcounter"><a href="http://www.statcounter.com/free_web_stats.html" target="_blank"><img class="statcounter" src="http://c42.statcounter.com/3572878/0/d52ee7be/1/" alt="website statistics" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+<% end -%>
 <!-- end #wrapper -->
 </body>
 </html>

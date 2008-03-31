@@ -47,7 +47,7 @@ class MesuresController < ApplicationController
       userid=user.id
     end
     extraInfo=params[:extraInfo]
-#    puts "params:"+mcc+" mnc:"+mnc+" lac:"+lac+" cellid:"+cellid
+    logger.info "New mesure....params:"+mcc.to_s+" mnc:"+mnc.to_s+" lac:"+lac.to_s+" cellid:"+cellid.to_s
     @cell=Cell.find_by_mcc_and_mnc_and_lac_and_cellid(mcc,mnc,lac,cellid)
     if !@cell
       @cell=Cell.new(:mcc=>mcc,:mnc=>mnc,:lac=>lac,:cellid=>cellid)
@@ -56,6 +56,7 @@ class MesuresController < ApplicationController
     @mesure.cell=@cell
     @mesure.save
     @cell.nbSamples=@cell.nbSamples+1
+    @cell.computePos
     @cell.save
     
   end

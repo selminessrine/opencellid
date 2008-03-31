@@ -1,0 +1,11 @@
+<div id="map" style="width: 400px; height: 400px;"></div>
+<script>
+//var map = new GMap2(document.getElementById("map"));
+//map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+
+var mapstraction = new Mapstraction('map','google');
+var myPoint = new LatLonPoint(37.404,-122.008);
+mapstraction.setCenterAndZoom(myPoint, 10);
+mapstraction.addOverlay("http://www.arjam.net/cells.kml");
+
+</script>
