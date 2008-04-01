@@ -20,4 +20,15 @@ class UsersController < ApplicationController
 def staticShow
 		render(:action=>params[:id])
 end
+
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      flash[:notice] = 'User was successfully created.'
+      render :text=>"ok"
+    else
+      puts "error.."
+      render :action => 'signup'
+    end
+  end
 end
