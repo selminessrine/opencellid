@@ -1,0 +1,12 @@
+TotalCells:<%= @totalCells -%><br/>
+TotalMesures:<%= @totalMesures -%><br/>
+
+List of mcc:
+<% @mcc.each do |anMcc| %>
+<%=  anMcc.mcc %><br/>
+<% end %>
+<br/>
+List of mnc:
+<% @mnc.each do |anMnc| %>
+<%= anMnc.mnc %><br/>
+<% end %>

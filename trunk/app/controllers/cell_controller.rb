@@ -22,4 +22,19 @@ class CellController < ApplicationController
     @cells=Cell.find(:all)
    end
    
+   def stats
+    # Last found cells
+    # 
+    @lastCells=Cell.find(:all,:limit=>5)
+    # 
+    # Total number of cells:
+    @totalCells=Mesure.find_by_sql("SELECT count(*) as res from cells")[0].attributes["res"].to_i
+    # Total number of samples:
+    @totalMesures=Mesure.find_by_sql("SELECT count(*) as res from mesures")[0].attributes["res"].to_i
+    # List of mcc/nmc
+    @mcc=Cell.find_by_sql("SELECT * from cells group by mcc")
+    @mnc=Cell.find_by_sql("SELECT * from cells group by mnc")
+   end
+   
+   
 end

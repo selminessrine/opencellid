@@ -20,6 +20,7 @@
 			<div id="menu">
 				<ul>
                     <li><%= link_to "About", {:controller=>"users", :action=>"staticShow",:id=>"about" } %></li> 
+                    <li><%= link_to "Stats", {:controller=>"cell", :action=>"stats"} %></li> 
                     <li><%= link_to "Download", {:controller=>"users", :action=>"staticShow",:id=>"download" } %></li> 
                     <li><%= link_to "Api", {:controller=>"users", :action=>"staticShow",:id=>"api" } %></li> 
                     <li><%= link_to "Browse cells", {:controller=>"cell", :action=>"list" } %></li> 
