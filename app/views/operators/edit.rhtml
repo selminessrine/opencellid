@@ -1,0 +1,9 @@
+<h1>Editing operators</h1>
+
+<% form_tag :action => 'update', :id => @operators do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @operators %> |
+<%= link_to 'Back', :action => 'list' %>
