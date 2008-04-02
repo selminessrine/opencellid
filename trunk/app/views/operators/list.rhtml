@@ -1,0 +1,27 @@
+<h1>Listing operators</h1>
+
+<table>
+  <tr>
+  <% for column in Operators.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for operators in @operators %>
+  <tr>
+  <% for column in Operators.content_columns %>
+    <td><%=h operators.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => operators %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => operators %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => operators }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @operators_pages.current.previous } if @operators_pages.current.previous %>
+<%= link_to 'Next page', { :page => @operators_pages.current.next } if @operators_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New operators', :action => 'new' %>
