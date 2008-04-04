@@ -8,7 +8,7 @@ class CellController < ApplicationController
   end
   
   def listKml
-    @cells=Cell.find(:all)
+    @cells=Cell.find(:all,:limit=>200,:order=>"id desc")
       response.headers['Content-Type'] = 'application/vnd.google-earth.kml+xml'
   	render :layout=>false
   end
@@ -40,7 +40,7 @@ class CellController < ApplicationController
    end
    
    def map
-    @cells=Cell.find(:all)
+    @cells=Cell.find(:all,:limit=>200,:order=>"id desc")
    end
   
   #
