@@ -1,14 +1,19 @@
 TotalCells:<b><%= @totalCells -%></b><br/>
 TotalMesures:<b><%= @totalMesures -%></b><br/>
 <br/>
-List of mcc (<%= @mcc.size -%>):<br/>
-<% @mcc.each do |anMcc| %>
-<% country=Country.find(anMcc.mcc) %>
-<%=  anMcc.mcc.to_s+" "+country.name+" "+ Cell.find_all_by_mcc(anMcc.mcc).size.to_s+" cells" %><br/>
+List of mcc (<%= @countries.size -%>):<br/>
+<% @countries.each do |c| %>
+<%=  c.id.to_s+" "+c.name+" "+ Cell.find_all_by_mcc(c.id).size.to_s+" cells" %><br/>
 <% end %>
 <br/>
 List of mnc (<%= @mnc.size -%>):<br/>
 <% @mnc.each do |anMnc| %>
-<% operator=Operators.find_by_mcc_and_mnc(anMnc.mcc,anMnc.mnc) %>
-<%=  anMnc.mnc.to_s+" "+operator.name  %><br/>
+<% begin
+     name=""
+     operator=Operators.find_by_mcc_and_mnc(anMnc.mcc,anMnc.mnc) 
+     name=operator.name
+  rescue
+  end
+%>
+<%=  anMnc.mnc.to_s+" "+name  %><br/>
 <% end %>
