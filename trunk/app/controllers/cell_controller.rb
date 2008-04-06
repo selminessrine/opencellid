@@ -76,7 +76,14 @@ class CellController < ApplicationController
     # List of mcc/nmc
     @mcc=Cell.find_by_sql("SELECT * from cells group by mcc")
     @mnc=Cell.find_by_sql("SELECT * from cells group by mnc")
-    
+    @countries=[]
+    @mcc.each do |c|
+      begin
+        countrie=Country.find(c.mcc)
+        @countries<<countrie
+      rescue
+      end
+    end
    end
    
    
