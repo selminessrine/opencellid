@@ -12,4 +12,8 @@ class Cell < ActiveRecord::Base
     self.lon=lon/self.mesures.size
     self.save
   end
+  
+  def operator
+    Operators.find_by_mcc_and_mnc(self.mcc,self.mnc)
+  end
 end

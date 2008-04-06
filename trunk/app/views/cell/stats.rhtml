@@ -3,10 +3,12 @@ TotalMesures:<b><%= @totalMesures -%></b><br/>
 <br/>
 List of mcc (<%= @mcc.size -%>):<br/>
 <% @mcc.each do |anMcc| %>
-<%=  anMcc.mcc %><br/>
+<% country=Country.find(anMcc.mcc) %>
+<%=  anMcc.mcc.to_s+" "+country.name+" "+ Cell.find_all_by_mcc(anMcc.mcc).size.to_s+" cells" %><br/>
 <% end %>
 <br/>
 List of mnc (<%= @mnc.size -%>):<br/>
 <% @mnc.each do |anMnc| %>
-<%= anMnc.mnc %><br/>
+<% operator=Operators.find_by_mcc_and_mnc(anMnc.mcc,anMnc.mnc) %>
+<%=  anMnc.mnc.to_s+" "+operator.name  %><br/>
 <% end %>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+  <Folder>
+    <name>All cells</name>
+    <visibility>0</visibility>
+    <open>0</open>
+    <description>OpenCellID cells</description>
+    <NetworkLink>
+      <visibility>0</visibility>
+      <open>0</open>
+      <refreshVisibility>0</refreshVisibility>
+      <flyToView>0</flyToView>
+      <Link>
+        <href>http://localhost:3007/cells/listKml</href>
+      </Link>
+    </NetworkLink>
+  </Folder>
+</kml>

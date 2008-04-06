@@ -4,7 +4,7 @@ class CellController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @cell_pages, @cells = paginate :cells, :per_page => 10
+    @cell_pages, @cells = paginate :cells, :order=>"id desc",:per_page => 10
   end
   
   def listKml
@@ -40,30 +40,26 @@ class CellController < ApplicationController
    end
    
    def map
-    @cells=Cell.find(:all,:limit=>200,:order=>"id desc")
+      @map=true
+      @cells=Cell.find(:all,:limit=>200,:order=>"id desc")
    end
   
   #
   # Return Point in a selected area
   #
   def getInArea
-    max=params[:max]||20
+    max=params[:max]||100
     if params[:bbox]
       bbox=params[:bbox].split(',')
       r=Rect.new bbox[0].to_f,bbox[1].to_f,bbox[2].to_f,bbox[3].to_f
     else
       r=Rect.new -180.to_f,-90.to_f,180.to_f,90.to_f
     end
-    map.places.each do
-        |place|
-        if  (place.isInside? r) && ( max==-1 || (@map.places.size<max) )
-          @map.places<<place
-       end
-     end
+    @cells=Cell.find_by_sql("SELECT * from cells where lat>="+r.minLat.to_s+" and lat<="+r.maxLat.to_s+" and lon>="+r.minLon.to_s+" and lon<="+r.maxLon.to_s)
      if params[:type]=="xml"
        render(:action=>"showXml",:layout=>false)
      else
-       render(:action=>"showKml",:layout=>false)
+       render(:action=>"listKml",:layout=>false)
      end
   end
   
@@ -71,7 +67,7 @@ class CellController < ApplicationController
    def stats
     # Last found cells
     # 
-    @lastCells=Cell.find(:all,:limit=>5)
+    @lastCells=Cell.find(:all,:limit=>200,:order=>"id desc")
     # 
     # Total number of cells:
     @totalCells=Mesure.find_by_sql("SELECT count(*) as res from cells")[0].attributes["res"].to_i
@@ -80,6 +76,7 @@ class CellController < ApplicationController
     # List of mcc/nmc
     @mcc=Cell.find_by_sql("SELECT * from cells group by mcc")
     @mnc=Cell.find_by_sql("SELECT * from cells group by mnc")
+    
    end
    
    
