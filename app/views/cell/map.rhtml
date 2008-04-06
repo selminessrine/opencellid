@@ -1,3 +1,4 @@
+<H2> Latest 200 cells found...</h2>
 <div id="map" style="width: 750px; height: 400px;"></div>
 <script>
 //var map = new GMap2(document.getElementById("map"));
@@ -7,9 +8,16 @@ var mapstraction = new Mapstraction('map','google');
 var myPoint = new LatLonPoint(0,0);
 mapstraction.setCenterAndZoom(myPoint, 2);
 mapstraction.addLargeControls();
+//var geoXml = new GGeoXml("http://localhost:3007/cell/getInArea");
+//mapstraction.getMap().addOverlay(geoXml);
 <% @cells.each do |cell| %>
 var m=new  Marker(new LatLonPoint(<%= cell.lat -%>,<%= cell.lon -%>));
-m.setInfoBubble('<%= "Cell<br/>Mcc:"+cell.mcc.to_s+"<br/>Mnc"+cell.mnc.to_s+"<br/>Id:"+cell.cellid.to_s+"<br/>Nb Samples:"+cell.nbSamples.to_s+"<br/>"+link_to("View samples on map", {:controller=>"mesure", :action=>"map",:id=>cell.id }) -%>');
+<% o=cell.operator
+info="Unkown"
+if o 
+    info=o.name
+end %>
+m.setInfoBubble('<%= "Cell<br/>Mcc:"+cell.mcc.to_s+"<br/>Mnc"+cell.mnc.to_s+"<br/>Lac:"+cell.lac.to_s+"<br/>Cell Id:"+cell.cellid.to_s+"<br/>Nb Samples:"+cell.nbSamples.to_s+"<br/>"+link_to("View samples on map", {:controller=>"mesure", :action=>"map",:id=>cell.id })+"<br/>Operator:"+info -%>');
 mapstraction.addMarker(m);
 <% end %>
 </script>
