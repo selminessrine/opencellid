@@ -2,13 +2,23 @@ class CellController < ApplicationController
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
+  def index
+    list
+    render :action => 'list'
+  end
 
   def list
-    @cell_pages, @cells = paginate :cells, :order=>"id desc",:per_page => 10
+    if params[:mcc] then
+      cond="mcc="+params[:mcc]
+    end    
+    @cell_pages, @cells = paginate :cells, :conditions=>cond,:order=>"id desc",:per_page => 100
   end
   
   def listKml
-    @cells=Cell.find(:all,:limit=>200,:order=>"id desc")
+    if params[:mcc] then
+      cond="mcc="+params[:mcc]
+    end
+    @cells=Cell.find(:all,:limit=>200,:conditions=>cond,:order=>"id desc")
       response.headers['Content-Type'] = 'application/vnd.google-earth.kml+xml'
   	render :layout=>false
   end
