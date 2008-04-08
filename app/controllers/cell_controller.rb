@@ -53,7 +53,13 @@ class CellController < ApplicationController
    
    def map
       @map=true
-      @cells=Cell.find(:all,:limit=>200,:order=>"id desc")
+      if params[:id] 
+        @title="View cell"
+        @cells=[Cell.find(params[:id])]
+      else
+        @title="latest  200 cells"
+        @cells=Cell.find(:all,:limit=>200,:order=>"id desc")
+      end
    end
   
   #
