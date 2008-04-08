@@ -9,8 +9,6 @@ class UsersController < ApplicationController
   end
 
   def signup
-    puts"signin up.."+params.to_s
- 
     @user = User.new(params[:user])
     
     return unless request.post?
@@ -49,7 +47,6 @@ end
       flash[:notice] = 'User was successfully created.'
       render :text=>"ok"
     else
-      puts "error.."
       render :action => 'signup'
     end
   end

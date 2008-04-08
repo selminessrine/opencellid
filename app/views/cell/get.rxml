@@ -1,6 +1,10 @@
 xml.instruct! :xml, :version=>"1.0",:encoding=>"UTF-8"
 if @cell
- xml.cell (:lat=>@cell.lat,:lon=>@cell.lon,:mcc=>@cell.mcc,:mnc=>@cell.mnc,:lac=>@cell.lac,:cellId=>@cell.cellid,:nbSamples=>@cell.nbSamples) 
+ xml.rsp(:stat=>"ok") do
+    xml.cell (:lat=>@cell.lat,:lon=>@cell.lon,:mcc=>@cell.mcc,:mnc=>@cell.mnc,:lac=>@cell.lac,:cellId=>@cell.cellid,:nbSamples=>@cell.nbSamples) 
+ end
 else
-  xml.error "Error, cell not found"
+  xml.rsp(:stat=>"fail") {
+    xml.err(:code=>1,:err=> " cell not found")
+  }
 end
