@@ -16,4 +16,10 @@ class Cell < ActiveRecord::Base
   def operator
     Operators.find_by_mcc_and_mnc(self.mcc,self.mnc)
   end
+  def country
+     begin
+          Country.find(self.mcc)
+      rescue
+      end
+  end
 end
