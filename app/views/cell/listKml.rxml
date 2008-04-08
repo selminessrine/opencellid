@@ -6,7 +6,7 @@ xml.kml(:xmlns=>"http://earth.google.com/kml/2.1") {
   @cells.each do |cell|
     xml.Placemark do
       xml.name "Cell:"+cell.cellid.to_s+" mcc:"+cell.mcc.to_s+" mnc:"+cell.mnc.to_s+" lac:"+cell.lac.to_s
-      xml.description "Operator:"+cell.operator.name+"\nNb Samples:"+cell.nbSamples.to_s
+      xml.description "Operator:"+cell.operatorName+"\nNb Samples:"+cell.nbSamples.to_s
       xml.Point do
         xml.coordinates cell.lon.to_s+","+cell.lat.to_s+",0"
       end
