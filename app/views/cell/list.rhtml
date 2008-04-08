@@ -6,6 +6,8 @@ Note: you can get the Kml view here: <%= link_to(image_tag("google_earth.png"),"
   <% for column in Cell.content_columns %>
     <th><%= column.human_name %></th>
   <% end %>
+  <th>Country</th>
+  <th>Operator</th>
   </tr>
   
 <% for cell in @cells %>
@@ -13,6 +15,8 @@ Note: you can get the Kml view here: <%= link_to(image_tag("google_earth.png"),"
   <% for column in Cell.content_columns %>
     <td><%=h cell.send(column.name) %></td>
   <% end %>
+    <td><%= if cell.country!=nil then cell.country.name else "none" end  %></td>  
+    <td><%= if cell.operator!=nil then cell.operator.name else "none" end  %></td>  
     <td><%= link_to 'Show', :action => 'show', :id => cell %></td>
   </tr>
 <% end %>
