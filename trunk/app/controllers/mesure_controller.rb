@@ -3,7 +3,19 @@ class MesureController < ApplicationController
 
 
   def add
-    mesure=Mesure.createMesure(params) 
+    logger.info "Will add mesure..."
+    begin
+      if params[:user]==nil
+        user=User.find_by_apiKey(params[:key])
+        params[:user]=user.login
+      end      
+      mesure=Mesure.createMesure(params) 
+    rescue =>e
+       logger.error e
+       @error="Invalid API KEY"
+    end
+      
+      render :layout=>false
   end
   
   

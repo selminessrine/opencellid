@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://earth.google.com/kml/2.2">
   <Folder>
-    <name>All cells</name>
+    <name>Cell Views</name>
     <visibility>0</visibility>
     <open>0</open>
-    <description>OpenCellID cells</description>
     <NetworkLink>
       <visibility>0</visibility>
       <open>0</open>
+      <description>List of cells...Zoom to country to see enough datas</description>
       <refreshVisibility>0</refreshVisibility>
-      <flyToView>0</flyToView>
       <Link>
-        <href>http://localhost:3007/cells/listKml</href>
+        <href>http://www.opencellid.org/cell/getInArea</href>
+        <refreshInterval>2</refreshInterval>
+        <viewRefreshMode>onStop</viewRefreshMode>
+        <viewRefreshTime>1</viewRefreshTime>
       </Link>
     </NetworkLink>
   </Folder>
