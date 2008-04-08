@@ -18,7 +18,9 @@ class CellController < ApplicationController
     if params[:mcc] then
       cond="mcc="+params[:mcc]
     end
-    @cells=Cell.find(:all,:limit=>200,:conditions=>cond,:order=>"id desc")
+    limit=200
+    if params[:limit] then limit=params[:limit] end
+    @cells=Cell.find(:all,:limit=>limit,:conditions=>cond,:order=>"id desc")
       response.headers['Content-Type'] = 'application/vnd.google-earth.kml+xml'
   	render :layout=>false
   end
@@ -59,13 +61,13 @@ class CellController < ApplicationController
   #
   def getInArea
     max=params[:max]||100
-    if params[:bbox]
-      bbox=params[:bbox].split(',')
+    if params[:BBOX]
+      bbox=params[:BBOX].split(',')
       r=Rect.new bbox[0].to_f,bbox[1].to_f,bbox[2].to_f,bbox[3].to_f
     else
       r=Rect.new -180.to_f,-90.to_f,180.to_f,90.to_f
     end
-    @cells=Cell.find_by_sql("SELECT * from cells where lat>="+r.minLat.to_s+" and lat<="+r.maxLat.to_s+" and lon>="+r.minLon.to_s+" and lon<="+r.maxLon.to_s)
+    @cells=Cell.find_by_sql("SELECT * from cells where lat>="+r.minLat.to_s+" and lat<="+r.maxLat.to_s+" and lon>="+r.minLon.to_s+" and lon<="+r.maxLon.to_s+" LIMIT 200")
      if params[:type]=="xml"
        render(:action=>"showXml",:layout=>false)
      else

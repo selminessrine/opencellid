@@ -8,6 +8,28 @@ class UsersController < ApplicationController
   def new
   end
 
+  def signup
+    puts"signin up.."+params.to_s
+ 
+    @user = User.new(params[:user])
+    
+    return unless request.post?
+    @user.apiKey=@user.getKey
+    @user.save!
+    self.current_user = @user
+    
+    Notifier.deliver_apikey_notification(@user)
+    
+    redirect_back_or_default(:controller => '/users', :action => 'apiSend')
+    flash[:notice] = "Thanks for signing up!"
+  rescue ActiveRecord::RecordInvalid
+    flash[:notice] = "Invalid username/password!"
+    render :action => 'signup'
+  end
+  
+  def apiSend
+  end
+  
   def create
     @user = User.new(params[:user])
     @user.save!

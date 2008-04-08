@@ -56,7 +56,8 @@ class MesuresController < ApplicationController
     
     # Check if there was already a mesure with these value (in that case, we do not add it)
     # 
-    old=Mesure.find_by_lat_and_lon_and_userid_and_cell(params[:lat],params[:lon],userid,@cell)
+    old=Mesure.find_by_lat_and_lon_and_userid_and_cell_id(params[:lat],params[:lon],userid,@cell.cellid)
+    puts "Getting old:"+old.to_s
     if !old
       @mesure=Mesure.new(:lat=>params[:lat],:lon=>params[:lon],:userid=>userid,:extraInfo=>extraInfo)
       @mesure.cell=@cell

@@ -1,15 +1,17 @@
 <h1>Signup for an API key</h1>
-Put a username and an email, the hash will be send to this email address
-
+Put a username and an email, the key will be send to this email address
 
 <%= error_messages_for :user %>
-<% form_for @user do |f| -%>
+<% form_for :user do |f| -%>
 <p><label for="login">Login</label><br/>
 <%= f.text_field :login %></p>
 
 <p><label for="email">Email</label><br/>
 <%= f.text_field :email %></p>
 
+<p><label for="password">Password</label><br/>
+<%= f.password_field :password %></p>
 
 <p><%= submit_tag 'Sign up' %></p>
 <% end -%>
+
