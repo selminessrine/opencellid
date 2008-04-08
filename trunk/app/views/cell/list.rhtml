@@ -18,6 +18,7 @@ Note: you can get the Kml view here: <%= link_to(image_tag("google_earth.png"),"
     <td><%= if cell.country!=nil then cell.country.name else "none" end  %></td>  
     <td><%= if cell.operator!=nil then cell.operator.name else "none" end  %></td>  
     <td><%= link_to 'Show', :action => 'show', :id => cell %></td>
+    <td><%= link_to 'Map', :action => 'map', :id => cell %></td>
   </tr>
 <% end %>
 </table>
