@@ -25,7 +25,7 @@ class Mesure < ActiveRecord::Base
     #
     # Check if there was already a mesure with these value (in that case, we do not add it)
     # 
-    old=Mesure.find_by_lat_and_lon_and_userid_and_mnc_and_mcc_and_lac_cell_id(lat,lon,userid,mcc,mnc,lac,@cell)
+    old=Mesure.find_by_lat_and_lon_and_userid_and_mnc_and_mcc_and_lac_and_cell_id(lat,lon,userid,mcc,mnc,lac,@cell)
     if old!=nil
       @mesure=Mesure.new(:lat=>params[:lat],:lon=>params[:lon],:userid=>userid,:extraInfo=>extraInfo,:mesured_at=>params[:mesured_at],:signal=>params[:signal])
       @mesure.cell=@cell
