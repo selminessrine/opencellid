@@ -54,7 +54,7 @@ class CellController < ApplicationController
    def map
       @map=true
       if params[:id] 
-        @title="View cell"
+        @title="View cells... "
         @cells=[Cell.find(params[:id])]
       else
         @title="latest  200 cells"
