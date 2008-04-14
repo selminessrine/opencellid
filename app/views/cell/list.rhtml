@@ -13,7 +13,13 @@ Note: you can get the Kml view here: <%= link_to(image_tag("google_earth.png"),"
 <% for cell in @cells %>
   <tr>
   <% for column in Cell.content_columns %>
-    <td><%=h cell.send(column.name) %></td>
+    <td>
+    <% if column.name!="nbSamples" %>
+    <%=h cell.send(column.name) %>
+    <% else %>
+    <%=link_to cell.send(column.name),:controller=>'mesure',:action=>'map',:id=> cell %>
+    <% end %>
+    </td>
   <% end %>
     <td><%= if cell.country!=nil then cell.country.name else "none" end  %></td>  
     <td><%= if cell.operator!=nil then cell.operator.name else "none" end  %></td>  
