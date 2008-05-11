@@ -5,7 +5,7 @@ Note: you must <%= link_to ("sign",:action=>"signup") %> to get an API key
 To submit a new cell measurement:
 
 <code>
-http://opencellid.org/measure/add?key=myapikey&mnc=1&mcc=2&lac=200&cellid=234&lat=3.42&lon=3.12
+http://www.opencellid.org/measure/add?key=myapikey&mnc=1&mcc=2&lac=200&cellid=234&lat=3.42&lon=3.12
 </code>
 
 Where:<br/>
@@ -24,7 +24,7 @@ ok or nok
 Get the position of a specific cell
 
 <code>
-http://opencellid.org/cell/get?mnc=1&mcc=2&lac=200&cellid=234
+http://www.opencellid.org/cell/get?mnc=1&mcc=2&lac=200&cellid=234
 </code>
 <br/>
 Where:<br/>
@@ -44,7 +44,7 @@ Example:
 
 Get the raw measures used to compute the position of a cell
 <code>
-http://opencellid.org/cell/getMeasures?mnc=1&mcc=2&lac=200&cellid=234
+http://www.opencellid.org/cell/getMeasures?mnc=1&mcc=2&lac=200&cellid=234
 </code>
 <br/>
 The positions will be retourned in xml format by default...
