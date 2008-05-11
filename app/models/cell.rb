@@ -1,5 +1,5 @@
 class Cell < ActiveRecord::Base
-  has_many :Measures
+  has_many :measures
   
   def computePos
     lat=0.0
@@ -8,8 +8,8 @@ class Cell < ActiveRecord::Base
       lat+=mes.lat
       lon+=mes.lon
     end
-    self.lat=lat/self.Measures.size
-    self.lon=lon/self.Measures.size
+    self.lat=lat/self.measures.size
+    self.lon=lon/self.measures.size
     self.save
   end
   
