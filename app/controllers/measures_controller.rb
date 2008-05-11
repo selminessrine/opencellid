@@ -1,4 +1,4 @@
-class MesuresController < ApplicationController
+class MeasuresController < ApplicationController
   def index
     list
     render :action => 'list'
@@ -9,21 +9,21 @@ class MesuresController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @mesure_pages, @mesures = paginate :mesures, :per_page => 10
+    @measure_pages, @measures = paginate :measures, :per_page => 10
   end
 
   def show
-    @mesure = Mesure.find(params[:id])
+    @measure = Measure.find(params[:id])
   end
 
   def new
-    @mesure = Mesure.new
+    @measure = Measure.new
   end
 
   def create
-    @mesure = Mesure.new(params[:mesure])
-    if @mesure.save
-      flash[:notice] = 'Mesure was successfully created.'
+    @measure = Measure.new(params[:measure])
+    if @measure.save
+      flash[:notice] = 'Measure was successfully created.'
       redirect_to :action => 'list'
     else
       render :action => 'new'
@@ -31,7 +31,7 @@ class MesuresController < ApplicationController
   end
 
   def edit
-    @mesure = Mesure.find(params[:id])
+    @measure = Measure.find(params[:id])
   end
 
   def add
@@ -47,41 +47,41 @@ class MesuresController < ApplicationController
       userid=user.id
     end
     extraInfo=params[:extraInfo]
-    logger.info "New mesure....params:"+mcc.to_s+" mnc:"+mnc.to_s+" lac:"+lac.to_s+" cellid:"+cellid.to_s
+    logger.info "New measure....params:"+mcc.to_s+" mnc:"+mnc.to_s+" lac:"+lac.to_s+" cellid:"+cellid.to_s
 
     @cell=Cell.find_by_mcc_and_mnc_and_lac_and_cellid(mcc,mnc,lac,cellid)
     if !@cell
       @cell=Cell.new(:mcc=>mcc,:mnc=>mnc,:lac=>lac,:cellid=>cellid)
     end
     
-    # Check if there was already a mesure with these value (in that case, we do not add it)
+    # Check if there was already a Measure with these value (in that case, we do not add it)
     # 
-    old=Mesure.find_by_lat_and_lon_and_userid_and_cell_id(params[:lat],params[:lon],userid,@cell.cellid)
+    old=Measure.find_by_lat_and_lon_and_userid_and_cell_id(params[:lat],params[:lon],userid,@cell.cellid)
     puts "Getting old:"+old.to_s
     if !old
-      @mesure=Mesure.new(:lat=>params[:lat],:lon=>params[:lon],:userid=>userid,:extraInfo=>extraInfo)
-      @mesure.cell=@cell
-      @mesure.save
+      @Measure=Measure.new(:lat=>params[:lat],:lon=>params[:lon],:userid=>userid,:extraInfo=>extraInfo)
+      @Measure.cell=@cell
+      @Measure.save
       @cell.nbSamples=@cell.nbSamples+1
       @cell.computePos
      @cell.save
     else
-      logger.info "mesurement already here..."
+      logger.info "Measurement already here..."
     end
   end
   
   def update
-    @mesure = Mesure.find(params[:id])
-    if @mesure.update_attributes(params[:mesure])
-      flash[:notice] = 'Mesure was successfully updated.'
-      redirect_to :action => 'show', :id => @mesure
+    @Measure = Measure.find(params[:id])
+    if @Measure.update_attributes(params[:Measure])
+      flash[:notice] = 'Measure was successfully updated.'
+      redirect_to :action => 'show', :id => @Measure
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    Mesure.find(params[:id]).destroy
+    Measure.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
 end

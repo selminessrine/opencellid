@@ -1,7 +1,7 @@
 require 'digest/sha1'
 require 'md5'
 class User < ActiveRecord::Base
-  has_many  :mesures
+  has_many  :measures
   # Virtual attribute for the unencrypted password
   attr_accessor :password
 

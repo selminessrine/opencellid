@@ -19,7 +19,7 @@ info="Unkown"
 if o 
     info=o.name
 end %>
-m.setInfoBubble('<%= "Cell<br/>Mcc:"+cell.mcc.to_s+"<br/>Mnc"+cell.mnc.to_s+"<br/>Lac:"+cell.lac.to_s+"<br/>Cell Id:"+cell.cellid.to_s+"<br/>Nb Samples:"+cell.nbSamples.to_s+"<br/>"+link_to("View samples on map", {:controller=>"mesure", :action=>"map",:id=>cell.id })+"<br/>Operator:"+info -%>');
+m.setInfoBubble('<%= "Cell<br/>Mcc:"+cell.mcc.to_s+"<br/>Mnc"+cell.mnc.to_s+"<br/>Lac:"+cell.lac.to_s+"<br/>Cell Id:"+cell.cellid.to_s+"<br/>Nb Samples:"+cell.nbSamples.to_s+"<br/>"+link_to("View samples on map", {:controller=>"measure", :action=>"map",:id=>cell.id })+"<br/>Operator:"+info -%>');
 mapstraction.addMarker(m);
 <% end %>
 </script>

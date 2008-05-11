@@ -17,7 +17,7 @@ Note: you can get the Kml view here: <%= link_to(image_tag("google_earth.png"),"
     <% if column.name!="nbSamples" %>
     <%=h cell.send(column.name) %>
     <% else %>
-    <%=link_to cell.send(column.name),:controller=>'mesure',:action=>'map',:id=> cell %>
+    <%=link_to cell.send(column.name),:controller=>'measure',:action=>'map',:id=> cell %>
     <% end %>
     </td>
   <% end %>

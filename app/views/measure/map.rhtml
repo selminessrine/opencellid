@@ -7,9 +7,9 @@ var mapstraction = new Mapstraction('map','google');
 var myPoint = new LatLonPoint(0,0);
 mapstraction.setCenterAndZoom(myPoint, 2);
 mapstraction.addLargeControls();
-<% @mesures.each do |mesure| %>
-var m=new  Marker(new LatLonPoint(<%= mesure.lat -%>,<%= mesure.lon -%>));
-m.setInfoBubble('<%= mesure.created_at.to_s+"<br/>CellID:"+mesure.cell.id.to_s+"<br/>"+link_to("Cell", {:controller=>"cells", :action=>"show",:id=>mesure.cell.id }) -%>');
+<% @measures.each do |measure| %>
+var m=new  Marker(new LatLonPoint(<%= measure.lat -%>,<%= measure.lon -%>));
+m.setInfoBubble('<%= measure.created_at.to_s+"<br/>CellID:"+measure.cell.id.to_s+"<br/>"+link_to("Cell", {:controller=>"cells", :action=>"show",:id=>measure.cell.id }) -%>');
 mapstraction.addMarker(m);
 <% end %>
 </script>
