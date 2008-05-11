@@ -3,9 +3,11 @@ if @cell
  xml.rsp(:stat=>"ok") do
     xml.cell (:lat=>@cell.lat,:lon=>@cell.lon,:mcc=>@cell.mcc,:mnc=>@cell.mnc,:lac=>@cell.lac,:cellId=>@cell.cellid,:nbSamples=>@cell.nbSamples) 
  end
-else if @lac
 else
+ if @lac
+ else
   xml.rsp(:stat=>"fail") {
-    xml.err(:code=>1,:err=> " cell not found")
+    xml.err(:code=>1,:info=> " cell not found")
   }
+end
 end

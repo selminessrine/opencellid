@@ -1,11 +1,14 @@
 xml.instruct! :xml, :version=>"1.0",:encoding=>"UTF-8"
 if @cell
- xml.cell (:lat=>@cell.lat,:lon=>@cell.lon,:mcc=>@cell.mcc,:mnc=>@cell.mnc,:lac=>@cell.lac,:cellId=>@cell.cellid,:nbSamples=>@cell.nbSamples) do
-  @cell.mesures.each do|mesure|
-    xml.mesure ("",:lat=>mesure.lat,:lon=>mesure.lon,:takenOn=>mesure.created_at,:takenBy=>mesure.userid)
+ xml.rsp(:stat=>"ok") do
+  xml.cell (:lat=>@cell.lat,:lon=>@cell.lon,:mcc=>@cell.mcc,:mnc=>@cell.mnc,:lac=>@cell.lac,:cellId=>@cell.cellid,:nbSamples=>@cell.nbSamples) do
+  @cell.measures.each do|measure|
+    xml.measure ("",:lat=>measure.lat,:lon=>measure.lon,:takenOn=>measure.created_at,:takenBy=>measure.userid)
   end
-  
+ end 
  end
 else
-  xml.error "Error, cell not found"
+  xml.rsp(:stat=>"fail") {
+     xml.err (:code=>1, :info=> "Error, cell not found")
+  }
 end

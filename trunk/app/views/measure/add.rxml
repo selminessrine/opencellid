@@ -1,6 +1,10 @@
 xml.instruct! :xml, :version=>"1.0",:encoding=>"UTF-8"
 if @error 
-  xml.error @error
+  xml.rsp(:stat=>"fail") {
+    xml.err( :info=> @error, :code=>2 )
+  }
 else
+ xml.rsp(:stat=>"ok") do
   xml.res "Mesure added"
+ end
 end
