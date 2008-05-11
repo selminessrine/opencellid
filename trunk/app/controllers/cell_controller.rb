@@ -46,7 +46,7 @@ class CellController < ApplicationController
 	render :layout=>false
    end
 
-  def getMesures
+  def getMeasures
     @cell=getACell params
 	render :layout=>false
    end
@@ -88,9 +88,9 @@ class CellController < ApplicationController
     @lastCells=Cell.find(:all,:limit=>200,:order=>"id desc")
     # 
     # Total number of cells:
-    @totalCells=Mesure.find_by_sql("SELECT count(*) as res from cells")[0].attributes["res"].to_i
+    @totalCells=Measure.find_by_sql("SELECT count(*) as res from cells")[0].attributes["res"].to_i
     # Total number of samples:
-    @totalMesures=Mesure.find_by_sql("SELECT count(*) as res from mesures")[0].attributes["res"].to_i
+    @totalMeasures=Measure.find_by_sql("SELECT count(*) as res from measures")[0].attributes["res"].to_i
     # List of mcc/nmc
     @mcc=Cell.find_by_sql("SELECT * from cells group by mcc")
     @mnc=Cell.find_by_sql("SELECT * from cells group by mnc")
