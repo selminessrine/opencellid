@@ -1,7 +1,7 @@
 xml.instruct! :xml, :version=>"1.0",:encoding=>"UTF-8"
 if @cell
  xml.rsp(:stat=>"ok") do
-    xml.cell (:lat=>@cell.lat,:lon=>@cell.lon,:mcc=>@cell.mcc,:mnc=>@cell.mnc,:lac=>@cell.lac,:cellId=>@cell.cellid,:nbSamples=>@cell.nbSamples) 
+    xml.cell (:lat=>@cell.lat,:lon=>@cell.lon,:mcc=>@cell.mcc,:mnc=>@cell.mnc,:lac=>@cell.lac,:cellId=>@cell.cellid,:nbSamples=>@cell.nbSamples,:range=>@cell.range) 
  end
 else
  if @lac
