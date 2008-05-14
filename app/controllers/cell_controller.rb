@@ -35,7 +35,12 @@ class CellController < ApplicationController
     lac=params[:lac]
     cellid=params[:cellid]
     if lac 
-      cell=Cell.find_by_mcc_and_mnc_and_lac_and_cellid(mcc,mnc,lac,cellid)
+      if cellid
+        cell=Cell.find_by_mcc_and_mnc_and_lac_and_cellid(mcc,mnc,lac,cellid)
+      else
+        cells=Cell.find_all_by_mcc_and_mnc_and_lac(mcc,mnc,lac)
+        cell=Cell.computeAverage(cells)
+      end
     else
       cell=Cell.find_by_mcc_and_mnc_and_cellid(mcc,mnc,cellid)
     end

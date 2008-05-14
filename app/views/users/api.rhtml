@@ -33,6 +33,10 @@ mnc: mobile network code<br/>
 lac: locale area code<br/>
 cellid: value of the cell id <br/>
 
+lac can be ommitted<br/>
+If cellid is not present or if cellid i unkown, a defaut return will be based on lac information,
+but with a much lower accuracy. In that case, cellid return will be -1.<br/>
+    
 The postion will be retourned in xml format by default in the following form<br/>
 <code>
 <cell mcc="mcc" mnc="mnc" lac="lac" cellid="cellid" />
