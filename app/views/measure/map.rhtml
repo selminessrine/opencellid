@@ -9,7 +9,12 @@ mapstraction.setCenterAndZoom(myPoint, 2);
 mapstraction.addLargeControls();
 <% @measures.each do |measure| %>
 var m=new  Marker(new LatLonPoint(<%= measure.lat -%>,<%= measure.lon -%>));
+m.setIcon("/images/measure.png");
 m.setInfoBubble('<%= measure.created_at.to_s+"<br/>CellID:"+measure.cell.id.to_s+"<br/>"+link_to("Cell", {:controller=>"cells", :action=>"show",:id=>measure.cell.id }) -%>');
 mapstraction.addMarker(m);
+
 <% end %>
+var c=new  Marker(new LatLonPoint(<%= @cell.lat -%>,<%= @cell.lon -%>));
+c.setInfoBubble('<%="Cell" -%>');
+mapstraction.addMarker(c);
 </script>

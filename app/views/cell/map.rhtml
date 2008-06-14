@@ -13,7 +13,7 @@ mapstraction.addLargeControls();
 //var geoXml = new GGeoXml("http://localhost:3007/cell/getInArea");
 //mapstraction.getMap().addOverlay(geoXml);
 <% @cells.each do |cell| %>
-var m=new  Marker(new LatLonPoint(<%= cell.lat -%>,<%= cell.lon -%>));
+var m=new  Marker(new LatLonPoint(<%= cell.lat||0.0 -%>,<%= cell.lon||0.0 -%>));
 <% o=cell.operator
 info="Unkown"
 if o 
