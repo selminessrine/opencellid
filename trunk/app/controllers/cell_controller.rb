@@ -48,7 +48,15 @@ class CellController < ApplicationController
    
   def get
     @cell=getACell params
-	render :layout=>false
+    if( params[:fmt]==nil || params[:fmt]=="xml" ) 
+     	render :layout=>false
+    else
+      if @cell
+        render :text=> @cell.lat+","+@cell.lon
+      else
+        render :text=>"error: cell not fond"
+      end
+    end
    end
 
   def getMeasures

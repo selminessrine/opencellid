@@ -22,6 +22,7 @@ class MeasureController < ApplicationController
    def map
     @map=true
     @measures=Measure.find_all_by_cell_id(params[:id])
+    @cell=Cell.find(params[:id])
     if !@measures then @measures=[] end
    end
 end
