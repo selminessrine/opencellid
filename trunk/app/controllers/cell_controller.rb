@@ -34,25 +34,27 @@ class CellController < ApplicationController
     mnc=params[:mnc]
     lac=params[:lac]
     cellid=params[:cellid]
-    if lac 
-      if cellid
-        cell=Cell.find_by_mcc_and_mnc_and_lac_and_cellid(mcc,mnc,lac,cellid)
-      else
+    cell=Cell.find_by_mcc_and_mnc_and_cellid(mcc,mnc,cellid)
+    if !cell and lac then
         cells=Cell.find_all_by_mcc_and_mnc_and_lac(mcc,mnc,lac)
         cell=Cell.computeAverage(cells)
-      end
-    else
-      cell=Cell.find_by_mcc_and_mnc_and_cellid(mcc,mnc,cellid)
     end
+    return cell
    end
    
   def get
     @cell=getACell params
     if( params[:fmt]==nil || params[:fmt]=="xml" ) 
      	render :layout=>false
+    elsif params[:fmt]=="txt"
+      if @cell
+        render :text=> @cell.lat.to_s+","+@cell.lon.to_s+","+@cell.range.to_s
+      else
+        render :text=>"error: cell not fond"
+      end
     else
       if @cell
-        render :text=> @cell.lat+","+@cell.lon
+        render :text=> "lat:"+@cell.lat.to_s+",lon:"+@cell.lon.to_s+",range:"+@cell.range.to_s
       else
         render :text=>"error: cell not fond"
       end
