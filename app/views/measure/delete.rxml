@@ -4,7 +4,7 @@ if @error
     xml.err( :info=> @error, :code=>2 )
   }
 else
- xml.rsp(:stat=>"ok",:id=>@measure.id.to_s,:cellid=>@measure.cell.id) do
-  xml.res "Measure added, id:"+@measure.id.to_s
+ xml.rsp(:stat=>"ok") do
+  xml.res "Measure deleted"
  end
 end

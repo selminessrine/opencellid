@@ -14,11 +14,13 @@ mcc: mobile country code<br/>
 mnc: mobile network code<br/>
 lac: locale area code<br/>
 cellid: value of the cell id <br/>
+measured_at (optionnal) the time of the measure...<br/>
 lat:latitude when the measure has been taken<br/>
 lon:longitude when the measure has been taken<br/>
 Return:<br/>
 ok or nok
 <br/>
+
 <h2>cell/get</h2>
 
 Get the position of a specific cell
@@ -54,7 +56,30 @@ http://www.opencellid.org/cell/getMeasures?mnc=1&mcc=2&lac=200&cellid=234
 The positions will be retourned in xml format by default...
 Example:<br/>
 <a href=http://www.opencellid.org/cell/getMeasures?mcc=250&mnc=99&cellid=29513&lac=0>http://www.opencellid.org/cell/getMeasures?mcc=250&mnc=99&cellid=29513&lac=0</a>
+<br/>
+<H1>Other functions:</h1>
+<h2>measure/delete</h2>
+To delete a muser. You can only delete your own measure, so your API key must be given.
 
+<code>
+http://www.opencellid.org/measure/delete/id?apiKey=myApiKey
+</code>
+<br/>
+Where:<br/>
+id: is the measure id you want to delete. This number is given as a reault of measure/add or measure/listMines<br/>
+apiKey: your own API key<br/>
+Note that a cell which has been created using this measure will only be deleted when all associated
+measures will be deleted.
 
+<h2>measure/list</h2>
+List your own measures.
+<code>
+http://www.opencellid.org/measure/delete/list?apiKey=myApiKey
+</code>
+<br/>
+Where:<br/>
+apiKey: your own API key<br/>
+This will list all measure created using your own API key (which can be long) and also the  associated
+measure id, which can be used to delete a measure.
 
 </div>

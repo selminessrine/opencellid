@@ -1,0 +1,12 @@
+xml.instruct! :xml, :version=>"1.0",:encoding=>"UTF-8"
+if @error 
+  xml.rsp(:stat=>"fail") {
+    xml.err( :info=> @error, :code=>2 )
+  }
+else
+  xml.measures(:total=>@measures.size){
+  @measures.each do |measure| 
+    xml.measure(:id=>measure.id,:lat=>measure.lat,:lon=>measure.lon)
+  end
+  }
+end

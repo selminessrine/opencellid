@@ -46,7 +46,7 @@ class CellController < ApplicationController
     @cell=getACell params
     if( params[:fmt]==nil || params[:fmt]=="xml" ) 
      	render :layout=>false
-    elsif params[:fmt]=="txt"
+    elsif params[:fmt]=="txt"||params[:fmt]=="text"
       if @cell
         render :text=> @cell.lat.to_s+","+@cell.lon.to_s+","+@cell.range.to_s
       else

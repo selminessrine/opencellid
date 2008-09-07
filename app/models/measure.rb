@@ -30,16 +30,28 @@ class Measure < ActiveRecord::Base
     if old==nil
       @measure=Measure.new(:lat=>lat,:lon=>lon,
                          :mcc=>mcc,:mnc=>mnc,:lac=>lac,:realCellId=>cellid,
-                         :userid=>userid,:extraInfo=>extraInfo,:measured_at=>params[:measured_at],:signal=>params[:signal])
+                         :userid=>userid,:extraInfo=>extraInfo,:signal=>params[:signal])
       @measure.cell=@cell
       @measure.save
       @cell.nbSamples=@cell.nbSamples+1
       @cell.computePos
       @cell.save
     else
+      @measure=old
       logger.info "measurement already here..."
     end
     return @measure
   end
 
+  def delete
+     cell=self.cell
+     logger.info "nb mesures in cell:"+cell.nbSamples.to_s
+     cell.nbSamples=cell.nbSamples-1
+     cell.save
+     if cell.nbSamples==0 
+        cell.destroy
+        logger.info "destorying cell"
+     end
+     self.destroy
+  end
 end

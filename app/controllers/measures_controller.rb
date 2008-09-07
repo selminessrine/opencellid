@@ -20,6 +20,7 @@ class MeasuresController < ApplicationController
     @measure = Measure.new
   end
 
+
   def create
     @measure = Measure.new(params[:measure])
     if @measure.save
@@ -46,28 +47,30 @@ class MeasuresController < ApplicationController
     if user
       userid=user.id
     end
-    extraInfo=params[:extraInfo]
-    logger.info "New measure....params:"+mcc.to_s+" mnc:"+mnc.to_s+" lac:"+lac.to_s+" cellid:"+cellid.to_s
 
-    @cell=Cell.find_by_mcc_and_mnc_and_lac_and_cellid(mcc,mnc,lac,cellid)
-    if !@cell
-      @cell=Cell.new(:mcc=>mcc,:mnc=>mnc,:lac=>lac,:cellid=>cellid)
-    end
+      extraInfo=params[:extraInfo]
+      logger.info "New measure....params:"+mcc.to_s+" mnc:"+mnc.to_s+" lac:"+lac.to_s+" cellid:"+cellid.to_s
+
+      @cell=Cell.find_by_mcc_and_mnc_and_lac_and_cellid(mcc,mnc,lac,cellid)
+      if !@cell
+        @cell=Cell.new(:mcc=>mcc,:mnc=>mnc,:lac=>lac,:cellid=>cellid)
+      end
     
-    # Check if there was already a Measure with these value (in that case, we do not add it)
-    # 
-    old=Measure.find_by_lat_and_lon_and_userid_and_cell_id(params[:lat],params[:lon],userid,@cell.cellid)
-    puts "Getting old:"+old.to_s
-    if !old
-      @Measure=Measure.new(:lat=>params[:lat],:lon=>params[:lon],:userid=>userid,:extraInfo=>extraInfo)
-      @Measure.cell=@cell
-      @Measure.save
-      @cell.nbSamples=@cell.nbSamples+1
-      @cell.computePos
-     @cell.save
-    else
-      logger.info "Measurement already here..."
-    end
+      # Check if there was already a Measure with these value (in that case, we do not add it)
+      # 
+      old=Measure.find_by_lat_and_lon_and_userid_and_cell_id(params[:lat],params[:lon],userid,@cell.cellid)
+      puts "Getting old:"+old.to_s
+     if !old
+       @Measure=Measure.new(:lat=>params[:lat],:lon=>params[:lon],:userid=>userid,:extraInfo=>extraInfo)
+       @Measure.cell=@cell
+        @Measure.save
+        @cell.nbSamples=@cell.nbSamples+1
+        @cell.computePos
+       @cell.save
+      else
+        logger.info "Measurement already here..."
+      end
+
   end
   
   def update
