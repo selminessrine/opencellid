@@ -8,6 +8,7 @@ class Cell < ActiveRecord::Base
       lat+=mes.lat
       lon+=mes.lon
     end
+    self.nbSamples=self.measures.size
     self.lat=lat/self.measures.size
     self.lon=lon/self.measures.size
     self.save
