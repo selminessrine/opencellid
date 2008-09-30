@@ -11,8 +11,22 @@ def importCsv fileName
     ref=""
     idx=0
     vals=l.split(",")
-    m=Mesure.createMesure({:mcc=>vals[1],:mnc=>vals[2],:lac=>vals[3],:cellid=>vals[4],:lon=>vals[7],:lat=>vals[8],:signal=>vals[5],:mesured_at=>Time.at(vals[6].to_i),:user=>"gsmloc.org"});
-    puts m.to_s
+    res=[]
+    vals.each do |e|
+      e.strip!
+      if e[0]==34
+        e=e[1,e.size-2]
+      end
+      res<<e
+    end
+    vals=res
+    if vals[1]!="-1"
+    
+      puts vals
+    
+      m=Measure.createMeasure({:mcc=>vals[1],:mnc=>vals[0],:lac=>vals[2],:cellid=>vals[3],:lon=>vals[5],:lat=>vals[4],:user=>"alexbirkett"});
+      puts m.to_s
+    end
   end
 end
 
@@ -26,7 +40,8 @@ def importOperators fileName
     puts "Line:"+l
     ref=""
     idx=0
-    vals=l.split(";")
+    vals=l.split(",")
+    puts vals
     o=Operators.new({:mcc=>vals[0],:mnc=>vals[1],:name=>vals[2],:status=>vals[3]});
     o.save
     puts o.to_s
@@ -34,4 +49,4 @@ def importOperators fileName
 end
 
 
-importOperators "c:\\tmp\\countries.csv"
+importCsv "c:\\tmp\\cells.csv"

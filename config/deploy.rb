@@ -14,26 +14,26 @@ role :db,  server, :primary => true
 set :deploy_to, "/home/#{user}/#{application}" 
 
 #############################
-## Liste de tâches à exécuter 
+## Liste de tï¿½ches ï¿½ exï¿½cuter 
 #############################
 
-#Tâche 1
-#Réalisée après la création des liens symboliques necessaires.
+#Tï¿½che 1
+#Rï¿½alisï¿½e aprï¿½s la crï¿½ation des liens symboliques necessaires.
 task :after_symlink, :roles => [:web, :app] do
-    # Changer l'environnement de développement à production
+    # Changer l'environnement de dï¿½veloppement ï¿½ production
     run "perl -i -pe \"s/# ENV\\['RAILS_ENV'\\] \\|\\|= 'production'/ENV['RAILS_ENV'] ||= 'production'/\" #{current_path}/config/environment.rb"
     # Renomer le fichier database.yml.prd 
     #run "cp #{current_path}/config/database.yml.prd #{current_path}/config/database.yml"
     run "cp #{current_path}/../../shared/database.yml #{current_path}/config/database.yml"
 	
-    # Conserver le même répertoire tmp qu'avant le déploiement, création de liens sympliques
+    # Conserver le mï¿½me rï¿½pertoire tmp qu'avant le dï¿½ploiement, crï¿½ation de liens sympliques
     run "rm -drf #{current_path}/tmp"
     run "ln -s #{shared_path}/tmp #{current_path}/tmp"
 end
 
-#Tâche 2
-#Exemple d'une tâche qui fait en sorte de conserver les même répertoire rep1 et rep2 avant et après déploiement
-#Utile pour un répertoire d'images uploadées par exemple.
+#Tï¿½che 2
+#Exemple d'une tï¿½che qui fait en sorte de conserver les mï¿½me rï¿½pertoire rep1 et rep2 avant et aprï¿½s dï¿½ploiement
+#Utile pour un rï¿½pertoire d'images uploadï¿½es par exemple.
 # task :after_update_code do
 #  %w{rep1 rep2}.each do |share|
 #  run "rm -drf #{release_path}/public/#{share}"
