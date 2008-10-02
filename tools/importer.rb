@@ -24,7 +24,7 @@ def importCsv fileName
     
       puts vals
     
-      m=Measure.createMeasure({:mcc=>vals[1],:mnc=>vals[0],:lac=>vals[2],:cellid=>vals[3],:lon=>vals[5],:lat=>vals[4],:user=>"alexbirkett"});
+      m=Measure.createMeasure({:mcc=>vals[1],:mnc=>vals[0],:lac=>vals[2],:cellid=>vals[3],:lon=>vals[5],:lat=>vals[4],:signal=>vals[6],:user=>"alexbirkett"});
       puts m.to_s
     end
   end
