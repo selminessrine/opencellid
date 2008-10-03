@@ -4,7 +4,7 @@ class MeasureController < ApplicationController
   # List all measures created by a user...
   def list
     begin
-     user=User.find_by_apiKey(params[:key])
+     user=User.find_by_apiKey(params[:key],:limit=>200)
      if user     
       @measures=Measure.find_all_by_userid(user.id)
      else
@@ -47,11 +47,13 @@ class MeasureController < ApplicationController
       end
 
       if((params[:lat].to_f==0)||(params[:lon].to_f==0))
-         puts "la.."
          @error="one of the two coordinate is null, which means probably an error..."
+      elsif((params[:mcc].to_i==0)||(params[:mnc].to_i==0))
+         @error="mcc or mnc is null, which means probably an error..."
       else
          @measure=Measure.createMeasure(params) 
       end
+      
       
     rescue =>e
        logger.error e

@@ -100,7 +100,7 @@ class CellController < ApplicationController
    def stats
     # Last found cells
     # 
-    @lastCells=Cell.find(:all,:limit=>200,:order=>"id desc")
+    # @lastCells=Cell.find(:all,:limit=>200,:order=>"id desc")
     # 
     # Total number of cells:
     @totalCells=Measure.find_by_sql("SELECT count(*) as res from cells")[0].attributes["res"].to_i
