@@ -48,6 +48,14 @@ class Cell < ActiveRecord::Base
     end
   end
   
+  def Cell.getSizeByCountry(mcc)
+    begin
+       Cell.find_by_sql("SELECT count(*) as res from cells where mcc="+mcc.to_s)[0].attributes["res"].to_i
+    rescue =>e
+       logger.info e.to_s
+    end
+  end
+  
   def country
      begin
           Country.find(self.mcc)

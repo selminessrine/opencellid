@@ -3,7 +3,7 @@ TotalMeasures:<b><%= @totalMeasures -%></b><br/>
 <br/>
 List of mcc (<%= @countries.size -%>):<br/>
 <% @countries.each do |c| %>
-<%=  c.id.to_s+" "+c.name+" "+ link_to(Cell.find_all_by_mcc(c.id).size.to_s,"/cell/list/?mcc="+c.id.to_s)+" cells" %><br/>
+<%=  c.id.to_s+" "+c.name+" "+ link_to(Cell.getSizeByCountry(c.id).to_s,"/cell/list/?mcc="+c.id.to_s)+" cells" %><br/>
 <% end %>
 <br/>
 List of mnc (<%= @mnc.size -%>):<br/>
