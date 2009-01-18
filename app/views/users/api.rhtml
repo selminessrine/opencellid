@@ -10,8 +10,8 @@ http://www.opencellid.org/measure/add?key=myapikey&mnc=1&mcc=2&lac=200&cellid=23
 
 Where:<br/>
 key: The <%= link_to ("apikey",:action=>"signup") %><br/>
-mcc: mobile country code<br/>
-mnc: mobile network code<br/>
+mcc: mobile country code(decimal)<br/>
+mnc: mobile network code(decimal)<br/>
 lac: locale area code (in decimal) <br/>
 cellid: value of the cell id (in decimal)<br/>
 measured_at (optionnal) the time of the measure...<br/>
@@ -30,9 +30,9 @@ http://www.opencellid.org/cell/get?mnc=1&mcc=2&lac=200&cellid=234
 </code>
 <br/>
 Where:<br/>
-mcc: mobile country code<br/>
-mnc: mobile network code<br/>
-lac: locale area code<br/>
+mcc: mobile country code (decimal)<br/>
+mnc: mobile network code (decimal)<br/>
+lac: locale area code (decimal)<br/>
 cellid: value of the cell id <br/>
 
 lac can be ommitted<br/>
