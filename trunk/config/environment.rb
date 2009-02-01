@@ -58,3 +58,7 @@ end
 # Mime::Type.register "application/x-mobile", :mobile
 
 # Include your application configuration below
+ExceptionNotifier.exception_recipients = %w(thomas.landspurg@gmail.com)
+#ExceptionNotifier.sender_address = %("Application Error" <app.error@myapp.com>)
+# defaults to "[ERROR] "
+ExceptionNotifier.email_prefix = "[OpenCellID] "
