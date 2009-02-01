@@ -39,11 +39,22 @@ class CellController < ApplicationController
         cells=Cell.find_all_by_mcc_and_mnc_and_lac(mcc,mnc,lac)
         cell=Cell.computeAverage(cells)
     end
+	puts params.inspect
+    r=Request.new({:mcc=>mcc,:mnc=>mnc,:lac=>lac,:cellid=>cellid})
+	if cell then
+		r.result=1
+	else
+		r.result=0
+	end
+	r.save
+
     return cell
+	
    end
    
   def get
     @cell=getACell params
+	
     if( params[:fmt]==nil || params[:fmt]=="xml" ) 
      	render :layout=>false
     elsif params[:fmt]=="txt"||params[:fmt]=="text"
