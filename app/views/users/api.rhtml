@@ -26,10 +26,11 @@ ok or nok
 Get the position of a specific cell
 
 <code>
-http://www.opencellid.org/cell/get?mnc=1&mcc=2&lac=200&cellid=234
+http://www.opencellid.org/cell/get?key=myapikey&mnc=1&mcc=2&lac=200&cellid=234
 </code>
 <br/>
 Where:<br/>
+key: The <%= link_to ("apikey",:action=>"signup") %><br/>
 mcc: mobile country code (decimal)<br/>
 mnc: mobile network code (decimal)<br/>
 lac: locale area code (decimal)<br/>
@@ -44,7 +45,7 @@ The postion will be retourned in xml format by default in the following form<br/
 <cell mcc="mcc" mnc="mnc" lac="lac" cellid="cellid" />
 </code>
 Example:
-<a href=http://www.opencellid.org/cell/get?mcc=250&mnc=99&cellid=29513&lac=0>http://www.opencellid.org/cell/get?mcc=250&mnc=99&cellid=29513&lac=0</a>
+<a href=http://www.opencellid.org/cell/get?key=myapikey&mcc=250&mnc=99&cellid=29513&lac=0>http://www.opencellid.org/cell/get?mcc=250&mnc=99&cellid=29513&lac=0</a>
 
 <h2>cell/getMeasures</h2>
 

@@ -39,8 +39,8 @@ class CellController < ApplicationController
         cells=Cell.find_all_by_mcc_and_mnc_and_lac(mcc,mnc,lac)
         cell=Cell.computeAverage(cells)
     end
-	puts params.inspect
-    r=Request.new({:mcc=>mcc,:mnc=>mnc,:lac=>lac,:cellid=>cellid})
+#	puts @request.remote_ip
+    r=Request.new({:mcc=>mcc,:mnc=>mnc,:lac=>lac,:cellid=>cellid,:ip=>@request.remote_ip})
 	if cell then
 		r.result=1
 	else

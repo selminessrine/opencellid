@@ -43,6 +43,9 @@ class MeasureController < ApplicationController
     begin
       if params[:user]==nil
         user=User.find_by_apiKey(params[:key])
+		if !user
+		   raise "No user found with this API key"
+		end
         params[:user]=user.login
       end
 
