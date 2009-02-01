@@ -35,14 +35,16 @@ class CellController < ApplicationController
     lac=params[:lac]
     cellid=params[:cellid]
     cell=Cell.find_by_mcc_and_mnc_and_cellid(mcc,mnc,cellid)
+	result=1
     if !cell and lac then
+		result=2
         cells=Cell.find_all_by_mcc_and_mnc_and_lac(mcc,mnc,lac)
         cell=Cell.computeAverage(cells)
     end
 #	puts @request.remote_ip
     r=Request.new({:mcc=>mcc,:mnc=>mnc,:lac=>lac,:cellid=>cellid,:ip=>@request.remote_ip})
 	if cell then
-		r.result=1
+		r.result=result
 	else
 		r.result=0
 	end
