@@ -36,6 +36,7 @@ class CellController < ApplicationController
     cellid=params[:cellid]
     cell=Cell.find_by_mcc_and_mnc_and_cellid(mcc,mnc,cellid)
 	result=1
+	# Put a fake range, needs t obe change later...
 	if cell 
 		cell.range=6000
 	end
