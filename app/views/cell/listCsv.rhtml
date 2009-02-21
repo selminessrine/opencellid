@@ -1,0 +1,6 @@
+lat,lon,mcc,mnc,lac,cellid,range,nbSamples
+<% if @cells -%>
+<%   @cells.each do |cell| -%>
+<%=	cell.lat.to_s+","+cell.lon.to_s+","+cell.mcc.to_s+","+cell.mnc.to_s+","+cell.lac.to_s+","+cell.cellid.to_s+","+cell.range.to_s+","+cell.nbSamples.to_s %>
+<%  end -%>
+<% end -%>

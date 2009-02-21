@@ -100,15 +100,21 @@ class CellController < ApplicationController
   #
   def getInArea
     max=params[:max]||100
+	limit=params[:limit]||200
+	if params[:mcc] then mcc=" mcc="+params[:mcc]+" AND " else mcc="" end
+	if params[:mnc] then mnc=" mnc="+params[:mnc]+" AND " else mnc="" end
     if params[:BBOX]
       bbox=params[:BBOX].split(',')
       r=Rect.new bbox[0].to_f,bbox[1].to_f,bbox[2].to_f,bbox[3].to_f
     else
       r=Rect.new -180.to_f,-90.to_f,180.to_f,90.to_f
     end
-    @cells=Cell.find_by_sql("SELECT * from cells where lat>="+r.minLat.to_s+" and lat<="+r.maxLat.to_s+" and lon>="+r.minLon.to_s+" and lon<="+r.maxLon.to_s+" LIMIT 200")
-     if params[:type]=="xml"
-       render(:action=>"showXml",:layout=>false)
+    @cells=Cell.find_by_sql("SELECT * from cells where "+mcc+mnc+" lat>="+r.minLat.to_s+" and lat<="+r.maxLat.to_s+" and lon>="+r.minLon.to_s+" and lon<="+r.maxLon.to_s+" LIMIT "+limit.to_s)
+     if params[:fmt]=="xml"
+       render(:action=>"listXml",:layout=>false)
+     elsif params[:fmt]=="txt"
+		headers['Content-Type'] = "text/plain" 
+       render(:action=>"listCsv",:layout=>false)
      else
        render(:action=>"listKml",:layout=>false)
      end

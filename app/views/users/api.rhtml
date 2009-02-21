@@ -9,14 +9,14 @@ http://www.opencellid.org/measure/add?key=myapikey&mnc=1&mcc=2&lac=200&cellid=23
 </code>
 
 Where:<br/>
-key: The <%= link_to ("apikey",:action=>"signup") %><br/>
-mcc: mobile country code(decimal)<br/>
-mnc: mobile network code(decimal)<br/>
-lac: locale area code (in decimal) <br/>
-cellid: value of the cell id (in decimal)<br/>
-measured_at (optionnal) the time of the measure...<br/>
-lat:latitude when the measure has been taken<br/>
-lon:longitude when the measure has been taken<br/>
+<b>key:</b> The <%= link_to ("apikey",:action=>"signup") %><br/>
+<b>mcc:</b> mobile country code(decimal)<br/>
+<b>mnc:</b> mobile network code(decimal)<br/>
+<b>lac:</b> locale area code (in decimal) <br/>
+<b>cellid:</b> value of the cell id (in decimal)<br/>
+<b>measured_at</b> (optionnal) the time of the measure...<br/>
+<b>lat:</b>latitude when the measure has been taken<br/>
+<b>lon:</b>longitude when the measure has been taken<br/>
 Return:<br/>
 ok or nok
 <br/>
@@ -30,11 +30,11 @@ http://www.opencellid.org/cell/get?key=myapikey&mnc=1&mcc=2&lac=200&cellid=234
 </code>
 <br/>
 Where:<br/>
-key: The <%= link_to ("apikey",:action=>"signup") %><br/>
-mcc: mobile country code (decimal)<br/>
-mnc: mobile network code (decimal)<br/>
-lac: locale area code (decimal)<br/>
-cellid: value of the cell id <br/>
+<b>key:</b> The <%= link_to ("apikey",:action=>"signup") %><br/>
+<b>mcc:</b> mobile country code (decimal)<br/>
+<b>mnc:</b> mobile network code (decimal)<br/>
+<b>lac:</b> locale area code (decimal)<br/>
+<b>cellid:</b> value of the cell id <br/>
 
 lac can be ommitted<br/>
 If cellid is not present or if cellid i unkown, a defaut return will be based on lac information,
@@ -58,6 +58,26 @@ The positions will be retourned in xml format by default...
 Example:<br/>
 <a href=http://www.opencellid.org/cell/getMeasures?mcc=250&mnc=99&cellid=29513&lac=0>http://www.opencellid.org/cell/getMeasures?mcc=250&mnc=99&cellid=29513&lac=0</a>
 <br/>
+
+<h2>cell/getInArea</h2>
+Obtain the list of cells in a specified area. Could be useful to preload some cells for a specific area
+<code>
+http://www.opencellid.org/cell/getInArea/?key=myApiKey&BBOX=latmin,lonmin,latmax,lontmax
+</code>
+<br/>
+Where:<br/>
+<b>key:</b> The <%= link_to ("apikey",:action=>"signup") %><br/>
+<b>BBOX:</b> the bounding box from where you want to get the mesures<br/>
+Optionnal parameters:<br/>
+<b>limit:</b> a number defining the size of the returned list. Default is 200. Be careful, putting a too big number could generate an error<br/>
+<b>mcc:</b>If you want to retrict the result to a specific country<br/>
+<b>mnc:</b>If you want to restrict the result to a specific operator<br/>
+<b>fmt:</b>you can specifiy Kml, Xml or TXT as output. Default is Kml. Txt is CSV type of output, with a first line defining the content of the list<br/>
+Example:
+<a href=http://www.opencellid.org/cell/getInArea?BBOX=2.210836754705214,48.80850297346874,2.488529205537504,48.93716640758027&fmt=xml>http://www.opencellid.org/cell/getInArea?BBOX=2.210836754705214,48.80850297346874,2.488529205537504,48.93716640758027&fmt=xml</a>
+
+
+
 <H1>Other functions:</h1>
 <h2>measure/delete</h2>
 To delete a muser. You can only delete your own measure, so your API key must be given.
@@ -67,8 +87,8 @@ http://www.opencellid.org/measure/delete/id?key=myApiKey
 </code>
 <br/>
 Where:<br/>
-id: is the measure id you want to delete. This number is given as a reault of measure/add or measure/listMines<br/>
-apiKey: your own API key<br/>
+<b>id:</b> is the measure id you want to delete. This number is given as a reault of measure/add or measure/listMines<br/>
+<b>apiKey:</b> your own API key<br/>
 Note that a cell which has been created using this measure will only be deleted when all associated
 measures will be deleted.
 
@@ -79,8 +99,11 @@ http://www.opencellid.org/measure/list?key=myApiKey
 </code>
 <br/>
 Where:<br/>
-apiKey: your own API key<br/>
+<b>key:</b> The <%= link_to ("apikey",:action=>"signup") %><br/>
 This will list all measure created using your own API key (which can be long) and also the  associated
 measure id, which can be used to delete a measure.
+Note: this function still need to evolve, as it is not adapted to poeple submitting a huge number of measures.
+<br/>
+
 
 </div>
