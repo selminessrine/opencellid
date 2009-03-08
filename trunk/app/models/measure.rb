@@ -44,7 +44,7 @@ class Measure < ActiveRecord::Base
 
   def delete
      cell=self.cell
-     logger.info "nb mesures in cell:"+cell.nbSamples.to_s
+     logger.info "nb measures in cell:"+cell.nbSamples.to_s
      cell.nbSamples=cell.nbSamples-1
      cell.save
      if cell.nbSamples==0 
@@ -53,4 +53,6 @@ class Measure < ActiveRecord::Base
      end
      self.destroy
   end
+  
+  
 end

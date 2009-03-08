@@ -6,7 +6,7 @@ if @error
 else
   xml.measures(:total=>@measures.size){
   @measures.each do |measure| 
-    xml.measure(:id=>measure.id,:lat=>measure.lat,:lon=>measure.lon)
+    xml.measure(:id=>measure.id,:lat=>measure.lat,:lon=>measure.lon,:mcc=>measure.mcc,:mnc=>measure.mnc,:lac=>measure.lac,:signal=>measure.signal,:cellId=>measure.realCellId,:measured_at=>measure.measured_at)
   end
   }
 end

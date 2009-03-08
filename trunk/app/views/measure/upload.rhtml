@@ -1,0 +1,10 @@
+<h1>File Upload</h1>
+This is an interface to the measure/uploadCsv API, which allows you to upload a set of measures directly. 
+<%= start_form_tag ({:action => 'uploadCsv'}, 
+                        :multipart => true) %>
+<p><label for="uploadCsv">API Key</label> : 
+<%= text_field_tag "key" %>
+<p><label for="uploadCsv">Select File</label> : 
+<%= file_field_tag 'datafile' %></p>
+<%= submit_tag "Upload" %>
+<%= end_form_tag %>

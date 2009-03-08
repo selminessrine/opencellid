@@ -68,7 +68,7 @@ http://www.opencellid.org/cell/getInArea/?key=myApiKey&BBOX=latmin,lonmin,latmax
 <br/>
 Where:<br/>
 <b>key:</b> The <%= link_to ("apikey",:action=>"signup") %><br/>
-<b>BBOX:</b> the bounding box from where you want to get the mesures<br/>
+<b>BBOX:</b> the bounding box from where you want to get the measures<br/>
 Optionnal parameters:<br/>
 <b>limit:</b> a number defining the size of the returned list. Default is 200. Be careful, putting a too big number could generate an error<br/>
 <b>mcc:</b>If you want to retrict the result to a specific country<br/>
@@ -77,6 +77,32 @@ Optionnal parameters:<br/>
 Example:
 <a href=http://www.opencellid.org/cell/getInArea?BBOX=2.210836754705214,48.80850297346874,2.488529205537504,48.93716640758027&fmt=xml>http://www.opencellid.org/cell/getInArea?BBOX=2.210836754705214,48.80850297346874,2.488529205537504,48.93716640758027&fmt=xml</a>
 
+
+<h2>measure/uploadCsv</h2>
+
+Upload a set of measures in a single poast
+
+<code>
+http://www.opencellid.org/measures/uploadCsv?key=myapikey
+</code>
+<br/>
+Where:<br/>
+<b>key:</b> The <%= link_to ("apikey",:action=>"signup") %><br/>
+<b>datafile:</b> The file that contains the mesures to be uploaded
+The format of the file is the following: the first line contains the name of the attributes to be sent (from lat,lon,mcc,mnc,lac,cellid,signal,measured_at)
+then, each line should contains a measure with the argument in the same line than in the header line, comma separated.
+Example of measure.txt file:
+<pre>
+lat,lon,mcc,mnc,lac,cellid,
+37.9872945,23.5773136,202,10,11100,13245414
+37.9835,24.613223,202,10,11100,13245416
+...
+</pre>
+
+
+
+Example:
+<a href=http:/measure/upload>http://www.opencellid.org/measure/upload</a> is an example of front end to upload file
 
 
 <H1>Other functions:</h1>
