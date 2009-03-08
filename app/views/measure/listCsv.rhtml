@@ -1,0 +1,6 @@
+lat,lon,mcc,mnc,lac,cellid,signal,measured_at,id
+<% if @measures -%>
+<%   @measures.each do |measure| -%>
+<%=	measure.lat.to_s+","+measure.lon.to_s+","+measure.mcc.to_s+","+measure.mnc.to_s+","+measure.lac.to_s+"," + measure.realCellId.to_s+","+measure.signal.to_s+"," + measure.measured_at.to_s+"," + measure.id.to_s %>
+<%  end -%>
+<% end -%>
