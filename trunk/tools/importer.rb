@@ -30,7 +30,25 @@ def importCsv fileName
   end
 end
 
+def importBase
+	total=0
+  # measures=Importer.find_all_by_country_code(310,:limit=>100000)
+  measures=Importer.find(:all,:limit=>100000)
+  measures.each do |newm|
+	total+=1
+	if total%100==0
+		puts "total:"+total.to_s
+	end
+	if(newm.network_id>0)
+			m=Measure.createMeasure({:mnc=>newm.network_id,:mcc=>newm.country_code,:lac=>newm.lac,:cellid=>newm.cell_id,:lon=>newm.lon,:lat=>newm.lat,:user=>"alexbirkett"});
+			puts m.to_s
+	end
+	newm.destroy();
+  end
+end
+
 def importOperators fileName
+
   file = File.new(fileName)
   fields=file.gets.split(",")
   puts fields
@@ -49,4 +67,9 @@ def importOperators fileName
 end
 
 
-importCsv "c:\\tmp\\cells.csv"
+#importCsv "c:\\tmp\\cells.csv"
+i=0
+while i<1000
+importBase 
+i=i+1
+end
