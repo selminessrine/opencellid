@@ -11,6 +11,7 @@ class Cell < ActiveRecord::Base
     self.nbSamples=self.measures.size
     self.lat=lat/self.measures.size
     self.lon=lon/self.measures.size
+	self.needsComputation=false
     self.save
   end
   

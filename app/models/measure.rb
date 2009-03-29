@@ -24,7 +24,7 @@ class Measure < ActiveRecord::Base
     #
     # Check if there was already a Measure with these value (in that case, we do not add it)
     # 
-    old=Measure.find_by_lat_and_lon_and_userid_and_realCellId(lat,lon,userid,@cell.id)
+    old=Measure.find_by_lat_and_lon_and_userid_and_realCellId(lat,lon,userid,@cell.cellid)
     logger.info"old:"+old.inspect+" cell:"+@cell.to_s
     if old==nil
       @measure=Measure.new(:lat=>lat,:lon=>lon,
@@ -33,7 +33,8 @@ class Measure < ActiveRecord::Base
       @measure.cell=@cell
       @measure.save
       @cell.nbSamples=@cell.nbSamples+1
-      @cell.computePos
+	  @cell.needsComputation=true
+#      @cell.computePos
       @cell.save
     else
       @measure=old
