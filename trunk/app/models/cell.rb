@@ -49,6 +49,13 @@ class Cell < ActiveRecord::Base
     end
   end
   
+  def Cell.cleanPos
+	cells=Cell.find_by_needsComputePos(true)
+	cells.each do |cell|
+		cell.computePos
+	end
+  end
+  
   def Cell.getSizeByCountry(mcc)
     begin
        Cell.find_by_sql("SELECT count(*) as res from cells where mcc="+mcc.to_s)[0].attributes["res"].to_i
