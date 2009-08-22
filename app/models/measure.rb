@@ -33,6 +33,8 @@ class Measure < ActiveRecord::Base
       @measure.cell=@cell
       @measure.save
       @cell.nbSamples=@cell.nbSamples+1
+	  @cell.lat=lat
+	  @cell.lon=lon
 	  @cell.needsComputation=true
 #      @cell.computePos
       @cell.save
