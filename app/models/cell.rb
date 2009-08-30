@@ -4,13 +4,17 @@ class Cell < ActiveRecord::Base
   def computePos
     lat=0.0
     lon=0.0
+	nbSamples=0
     self.measures.each do |mes|
-      lat+=mes.lat
-      lon+=mes.lon
+	   if mes.lat!=nil and mes.lon !=nil
+		lat+=mes.lat
+		lon+=mes.lon
+		nbSamples+=1
+	   end
     end
-    self.nbSamples=self.measures.size
-    self.lat=lat/self.measures.size
-    self.lon=lon/self.measures.size
+    self.nbSamples=nbSamples
+    self.lat=lat/nbSamples
+    self.lon=lon/nbSamples
 	self.needsComputation=false
     self.save
   end
