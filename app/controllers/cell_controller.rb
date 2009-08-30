@@ -40,6 +40,7 @@ class CellController < ApplicationController
 	if cell 
 		cell.range=6000
 		if cell.needsComputation
+			logger.info "Recompute position"
 			cell.computePos
 		end
 	end
