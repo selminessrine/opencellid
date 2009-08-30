@@ -50,7 +50,7 @@ class Cell < ActiveRecord::Base
   end
   
   def Cell.cleanPos
-	cells=Cell.find_by_needsComputePos(true)
+	cells=Cell.find_all_by_needsComputation(true)
 	cells.each do |cell|
 		cell.computePos
 	end

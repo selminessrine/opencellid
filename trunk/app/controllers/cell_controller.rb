@@ -39,6 +39,9 @@ class CellController < ApplicationController
 	# Put a fake range, needs t obe change later...
 	if cell 
 		cell.range=6000
+		if cell.needsComputation
+			cell.computePos
+		end
 	end
     if !cell and lac then
 		result=2
