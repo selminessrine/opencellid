@@ -54,10 +54,11 @@ class Cell < ActiveRecord::Base
   end
   
   def Cell.cleanPos
-	cells=Cell.find_all_by_needsComputation(true)
+	cells=Cell.find_all_by_needsComputation(true,:limit=>10000)
 	cells.each do |cell|
 		cell.computePos
 	end
+	return cells.size
   end
   
   def Cell.getSizeByCountry(mcc)

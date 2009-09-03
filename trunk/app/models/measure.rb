@@ -31,6 +31,9 @@ class Measure < ActiveRecord::Base
                          :mcc=>mcc,:mnc=>mnc,:lac=>lac,:realCellId=>cellid,
                          :userid=>userid,:extraInfo=>extraInfo,:signal=>params[:signal])
       @measure.cell=@cell
+	  if params[:measured_at]
+		@measure.measured_at=params[:measured_at]
+	  end
       @measure.save
       @cell.nbSamples=@cell.nbSamples+1
 	  @cell.lat=lat
