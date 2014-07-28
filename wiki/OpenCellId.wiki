@@ -7,7 +7,7 @@ OpenCellID
 
 http://www.opencellid.org
 
-http://wiki,opencellid.org
+http://wiki.opencellid.org
 
 
 = Details =
