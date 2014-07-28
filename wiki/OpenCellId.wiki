@@ -6,13 +6,11 @@
 OpenCellID
 
 http://www.opencellid.org
+http://wiki,opencellid.org
 
 
 = Details =
 
 What is OpenCellID?
 
-It's a service and a set of related tool to create an OpenSource database of CellID all around the world....
-
-
-The first step is to create the database on http://www.opencellid.org and the first version of the API to upload content on opencellid
+It's a service and a set of related tools to create an OpenSource database of CellID all around the world.
